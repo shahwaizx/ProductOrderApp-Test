@@ -20,5 +20,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the test suite
 COPY . .
 
-# Run all tests with pytest
-CMD ["pytest", "-v"]
+
+# Force pytest to run your specific file
+CMD ["pytest", "test.py", "-v"]
