@@ -74,7 +74,8 @@ Please see the attached test_output.txt for the full console logs.
 Regards,  
 Jenkins Bot
 """,
-                    attachmentsPattern: "${TEST_DIR}/test_output.txt"
+                    // use a glob so Jenkins can locate the file
+                    attachmentsPattern: "**/test_output.txt"
                 )
             }
         }
