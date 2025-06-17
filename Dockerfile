@@ -13,15 +13,12 @@ ENV CHROMEDRIVER=/usr/bin/chromedriver
 
 WORKDIR /app
 
-# Copy only deps first for caching
+# Copy and install dependencies first (caching layer)
 COPY requirements.txt .
-
-# Install Python deps
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy in your entire test suite
+# Copy the rest of the test suite
 COPY . .
 
-# Run the single‐file test suite
-# NOTE: this must match the actual filename (test.py)
-CMD ["python", "test.py", "-v"]
+# Run all tests with pytest
+CMD ["pytest", "-v"]
