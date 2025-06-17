@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MAIN_REPO = 'https://github.com/shahwaizx/ProductOrderApp-Selenium.git'
+        MAIN_REPO = 'https://github.com/shahwaizx/ProductOrderDB.git'
         TEST_REPO = 'https://github.com/shahwaizx/ProductOrderApp-Test.git'
         MAIN_DIR  = '/var/lib/jenkins/ProductOrderApp-Selenium'
         TEST_DIR  = '/var/lib/jenkins/ProductOrderApp-Test'
