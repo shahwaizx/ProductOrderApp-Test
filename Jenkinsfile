@@ -38,10 +38,12 @@ pipeline {
                     echo "🐳 Building Docker image for tests..."
                     docker build -t productorderapp-tests .
 
-                    echo "🧪 Running Selenium tests..."
-                    # capture output even if tests fail
-                    docker run --rm productorderapp-tests > test_output.txt || true
+                    echo "🧪 Running Selenium tests (output will stream here)..."
+                    # stream output to console AND save to file
+                    docker run --rm productorderapp-tests 2>&1 | tee test_output.txt || true
                     '''
+                    // archive the file so it's easy to download later if needed
+                    archiveArtifacts artifacts: 'test_output.txt', fingerprint: true
                 }
             }
         }
@@ -74,7 +76,6 @@ Please see the attached test_output.txt for the full console logs.
 Regards,  
 Jenkins Bot
 """,
-                    // use a glob so Jenkins can locate the file
                     attachmentsPattern: "**/test_output.txt"
                 )
             }
